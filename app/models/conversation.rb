@@ -20,6 +20,15 @@ class Conversation < ApplicationRecord
   end
 
   def update_latest_message_time(latest_message_time)
-    conversation.update(latest_message_at: created_at) if latest_message_time > latest_message_at
+    update(last_message_at: latest_message_time) if last_message_at.nil? || latest_message_time > last_message_at
+  end
+
+  def notify_all_participants(message_id, sender_id)
+    participants.each do |participant|
+      ActionCable.server.broadcast "messages_for_user_#{participant.user_id}",
+      message_id: message_id,
+      conversation_id: id,
+      sender_id: sender_id
+    end
   end
 end

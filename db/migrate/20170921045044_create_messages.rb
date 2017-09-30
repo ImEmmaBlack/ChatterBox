@@ -5,7 +5,7 @@ class CreateMessages < ActiveRecord::Migration[5.1]
       t.references :conversation, type: :uuid, foreign_key: true, index: true
       t.text :body, null: false, default: ''
       t.string :url
-      t.integer :type, null: false, default: 0
+      t.integer :type_id, null: false, default: 0
       t.jsonb :metadata
 
       t.timestamps

@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 20170925034309) do
     t.uuid "conversation_id"
     t.text "body", default: "", null: false
     t.string "url"
-    t.integer "type", default: 0, null: false
+    t.integer "type_id", default: 0, null: false
     t.jsonb "metadata"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

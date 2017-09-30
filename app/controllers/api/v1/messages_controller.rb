@@ -1,6 +1,4 @@
 class Api::V1::MessagesController < AuthenticatedController
-  before_action :set_message, only: [:show, :destroy]
-
   def index
     if message_index_params[:since]
       @messages = conversation.messages.since(since_datetime, limit)
@@ -10,13 +8,9 @@ class Api::V1::MessagesController < AuthenticatedController
     render json: @messages
   end
 
-  def show
-    render json: @message
-  end
-
   def create
     @message = conversation.messages.new(message_params.merge(user_id: current_user.id))
-    if @message.save && @message.add_messages(messages)
+    if @message.save
       render json: @message
     else
       render json: @message.errors, status: :unprocessable_entity
@@ -38,11 +32,11 @@ class Api::V1::MessagesController < AuthenticatedController
   end
 
   def before_datetime
-    [message_index_params[:before] || Time.now.utc, earliest_visible_message_time].min
+    [message_index_params[:before] || Time.now.utc, earliest_visible_message_time || Time.now.utc].min
   end
 
   def limit
-    [message_index_params[:limit] || 0, Message::QUERY_LIMIT].min
+    [message_index_params[:limit] || Message::QUERY_LIMIT, Message::QUERY_LIMIT].min
   end
 
   def set_message
@@ -50,10 +44,10 @@ class Api::V1::MessagesController < AuthenticatedController
   end
 
   def message_params
-    params.require(:message).permit(:body, :url, :type)
+    params.require(:message).permit(:body, :url, :type_id)
   end
 
   def message_index_params
-    params.require(:messages).permit(:since, :before, :limit)
+    params.permit(:since, :before, :limit)
   end
 end

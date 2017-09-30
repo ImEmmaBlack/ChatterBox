@@ -13,6 +13,7 @@ gem 'puma', '~> 3.7'
 # Sign in and sessions
 gem 'bcrypt', '~> 3.1.7'
 gem 'knock', '~> 2.1.1'
+gem 'validates_email_format_of'
 
 # Websockets
 gem 'redis', '~> 3.0'
