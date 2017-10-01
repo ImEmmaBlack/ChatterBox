@@ -6,8 +6,7 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      get 'users/search/:search_text', to: 'users#search'
-      resources :users, only: [:index, :show]
+      resources :users, only: [:index]
       resources :conversations do
         resources :messages, only: [:index, :show, :create]
       end
