@@ -14,3 +14,8 @@ docker-compose run website rake db:create
 docker-compose run website rake db:migrate
 docker-compose up
 ```
+
+The front end for this app can be found here: 
+https://github.com/ImEmmaBlack/ChatterBox
+
+
