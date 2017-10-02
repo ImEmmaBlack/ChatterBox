@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170925034309) do
+ActiveRecord::Schema.define(version: 20170921045044) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,16 +46,6 @@ ActiveRecord::Schema.define(version: 20170925034309) do
     t.datetime "updated_at", null: false
     t.index ["conversation_id"], name: "index_participants_on_conversation_id"
     t.index ["user_id"], name: "index_participants_on_user_id"
-  end
-
-  create_table "trigrams", force: :cascade do |t|
-    t.string "trigram", limit: 3
-    t.integer "score", limit: 2
-    t.integer "owner_id"
-    t.string "owner_type"
-    t.string "fuzzy_field"
-    t.index ["owner_id", "owner_type", "fuzzy_field", "trigram", "score"], name: "index_for_match"
-    t.index ["owner_id", "owner_type"], name: "index_by_owner"
   end
 
   create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|

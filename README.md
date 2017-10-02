@@ -1,24 +1,16 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
+running locally
 
-* Ruby version
 
-* System dependencies
+clone
+Ensure you have docker and docker compose installed
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Run the following to get up and running locally
+```
+docker-compose build
+docker-compose run website rake db:create
+docker-compose run website rake db:migrate
+docker-compose up
+```
