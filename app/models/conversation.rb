@@ -3,6 +3,7 @@ class Conversation < ApplicationRecord
   has_many :participants
   has_many :users, through: :participants
 
+
   def add_users(users)
     users.all? { |user| add_user(user) }
   end

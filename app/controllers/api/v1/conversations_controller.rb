@@ -1,5 +1,5 @@
 class Api::V1::ConversationsController < AuthenticatedController
-  before_action :set_conversation, only: [:show, :update]
+  before_action :set_conversation, only: [:update]
 
   def index
     @conversations = current_user.conversations.all

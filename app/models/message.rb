@@ -40,6 +40,8 @@ class Message < ApplicationRecord
     [IMAGE_TYPE, VIDEO_TYPE].include? type_id
   end
 
+  private
+
   def update_conversation
     conversation.update_latest_message_time(created_at)
   end

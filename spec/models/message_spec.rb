@@ -34,4 +34,84 @@ RSpec.describe Message, type: :model do
       end
     end
   end
+
+  describe 'methods' do
+    let(:message) { Message.new }
+
+    describe 'image?' do
+      subject(:image?) { message.image? }
+
+      context 'when the type_id is IMAGE_TYPE' do
+        before { message.type_id = Message::IMAGE_TYPE }
+
+        it { should be true }
+      end
+
+      context 'when the type_id is anything else' do
+        [Message::VIDEO_TYPE, Message::TEXT_TYPE].each do |type_id|
+          before { message.type_id = type_id }
+
+          it { should be false }
+        end
+      end
+    end
+
+    describe 'video?' do
+      subject(:video?) { message.video? }
+
+      context 'when the type_id is VIDEO_TYPE' do
+        before { message.type_id = Message::VIDEO_TYPE}
+
+        it { should be true }
+      end
+
+      context 'when the type_id is anything else' do
+        [Message::IMAGE_TYPE, Message::TEXT_TYPE].each do |type_id|
+          before { message.type_id = type_id }
+
+          it { should be false }
+        end
+      end
+    end
+
+    describe 'text?' do
+      subject(:text?) { message.text? }
+
+      context 'when the type_id is TEXT_TYPE' do
+        before { message.type_id = Message::TEXT_TYPE}
+
+        it { should be true }
+      end
+
+      context 'when the type_id is anything else' do
+        [Message::IMAGE_TYPE, Message::VIDEO_TYPE].each do |type_id|
+          before { message.type_id = type_id }
+
+          it { should be false }
+        end
+      end
+    end
+
+    describe 'media?' do
+      subject(:media?) { message.media? }
+
+      context 'when the type_id is VIDEO_TYPE' do
+        before { message.type_id = Message::VIDEO_TYPE }
+
+        it { should be true }
+      end
+
+      context 'when the type_id is IMAGE_TYPE' do
+        before { message.type_id = Message::IMAGE_TYPE }
+
+        it { should be true }
+      end
+
+      context 'when the type_id is TEXT_TYPE' do
+        before { message.type_id = Message::TEXT_TYPE }
+
+        it { should be false}
+      end
+    end
+  end
 end

@@ -19,7 +19,7 @@ gem 'validates_email_format_of'
 gem 'redis', '~> 3.0'
 
 gem 'active_model_serializers', '~> 0.10.6'
-gem 'fuzzily'
+gem 'kaminari'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
@@ -30,6 +30,7 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rspec-rails', '~> 3.6'
   gem 'guard'
+  gem 'factory_girl_rails'
   gem 'guard-rspec', require: false
 end
 
