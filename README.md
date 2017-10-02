@@ -16,6 +16,5 @@ docker-compose up
 ```
 
 The front end for this app can be found here: 
-https://github.com/ImEmmaBlack/ChatterBox
-
+https://github.com/ImEmmaBlack/ChatterBox-React
 
