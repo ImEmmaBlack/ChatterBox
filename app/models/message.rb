@@ -8,7 +8,8 @@ class Message < ApplicationRecord
 
   belongs_to :conversation
   belongs_to :user
-  after_commit :update_conversation, :set_metadata, :notify
+  after_create :notify
+  after_commit :update_conversation, :set_metadata
 
   validates :type_id, inclusion: TYPES
   validates :body, presence: true, if: :text?
